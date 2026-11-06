@@ -1,0 +1,13 @@
+base_model: mistralai/Mistral-7B-Instruct-v0.3
+train_file: data/train.jsonl
+eval_file: data/test.jsonl
+output_dir: outputs/claimsense-lora
+max_len: 768
+epochs: 3
+batch_size: 4
+grad_accum: 4
+lr: 2.0e-4
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
