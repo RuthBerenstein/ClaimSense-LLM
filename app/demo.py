@@ -1,4 +1,6 @@
-"""Gradio demo. Usage: python app/demo.py --adapter outputs/claimsense-lora"""
+"""
+Gradio demo. Usage: python app/demo.py --adapter outputs/claimsense-lora
+"""
 import argparse
 import sys
 from pathlib import Path
