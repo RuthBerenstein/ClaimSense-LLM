@@ -3,7 +3,6 @@
 
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue) ![License](https://img.shields.io/badge/license-MIT-green) ![Status](https://img.shields.io/badge/status-research-orange)
 
----
 
 ## 1. The Problem
 Insurance carriers receive millions of First Notice of Loss (FNOL) reports every year as free-text: call-centre notes, emails, adjuster comments. Today:
@@ -130,4 +129,4 @@ Ruth Berenstein — LLM / AI engineer focused on insurance & financial services.
 LinkedIn: https://www.linkedin.com/in/ruthberenstein/ · Email: rutha603@gmail.com
 
 ## License
-Ruth Berenstein
+MIT - Ruth Berenstein see [LICENSE]
