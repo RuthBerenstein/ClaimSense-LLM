@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+outputs/
+data/*.jsonl
+!data/sample/*.jsonl
+.ipynb_checkpoints/
+.env
