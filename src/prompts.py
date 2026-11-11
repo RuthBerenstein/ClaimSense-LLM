@@ -1,4 +1,4 @@
-"""Shared prompt templates for ClaimSense-LLM."""
+# Shared prompt templates for ClaimSense-LLM
 
 SYSTEM = (
     "You are ClaimSense, an insurance claims assistant. "
@@ -22,7 +22,19 @@ TASK_INSTRUCTIONS = {
 }
 
 
+# Llama 3.x chat format. The tokenizer adds <|begin_of_text|> itself.
 def build_prompt(task: str, text: str) -> str:
+    return (
+        f"<|start_header_id|>system<|end_header_id|>\n\n{SYSTEM}<|eot_id|>"
+        f"<|start_header_id|>user<|end_header_id|>\n\n### Task\n{TASK_INSTRUCTIONS[task]}"
+        f"\n\n### Input\n{text}<|eot_id|>"
+        f"<|start_header_id|>assistant<|end_header_id|>\n\n"
+    )
+
+
+def build_example(task: str, text: str, answer: str) -> str:
+    return build_prompt(task, text) + f"{answer}<|eot_id|>"
+
     return f"<s>[INST] {SYSTEM}\n\n### Task\n{TASK_INSTRUCTIONS[task]}\n\n### Input\n{text} [/INST]"
 
 
