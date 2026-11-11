@@ -17,7 +17,6 @@ from transformers import (AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfi
 sys.path.append(str(Path(__file__).parent))
 from prompts import build_example  # noqa: E402
 
-
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="configs/train_config.yaml")
