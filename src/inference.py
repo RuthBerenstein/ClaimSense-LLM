@@ -1,7 +1,5 @@
-"""Run ClaimSense on a single input.
+# Run ClaimSense on a single input.
 
-Usage: python src/inference.py --adapter outputs/claimsense-lora --task extract --text "..."
-"""
 import argparse
 import json
 import sys
@@ -14,8 +12,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 sys.path.append(str(Path(__file__).parent))
 from prompts import build_prompt  # noqa: E402
 
-BASE = "mistralai/Mistral-7B-Instruct-v0.3"
-
+BASE = "meta-llama/Llama-3.1-8B-Instruct"
 
 def load(adapter: str, base: str = BASE):
     tok = AutoTokenizer.from_pretrained(adapter)
@@ -23,13 +20,12 @@ def load(adapter: str, base: str = BASE):
     model = AutoModelForCausalLM.from_pretrained(base, quantization_config=bnb, device_map="auto")
     return PeftModel.from_pretrained(model, adapter).eval(), tok
 
-
 @torch.no_grad()
 def generate(model, tok, task: str, text: str, max_new_tokens: int = 300) -> str:
     ids = tok(build_prompt(task, text), return_tensors="pt").to(model.device)
-    out = model.generate(**ids, max_new_tokens=max_new_tokens, do_sample=False, pad_token_id=tok.eos_token_id)
+    out = model.generate(**ids, max_new_tokens=max_new_tokens, do_sample=False, pad_token_id=tok.pad_token_id or tok.eos_token_id,
+                         eos_token_id=tok.convert_tokens_to_ids("<|eot_id|>"))
     return tok.decode(out[0][ids["input_ids"].shape[1]:], skip_special_tokens=True).strip()
-
 
 def main():
     ap = argparse.ArgumentParser()
@@ -43,7 +39,6 @@ def main():
         print(json.dumps(json.loads(raw), indent=2))
     except json.JSONDecodeError:
         print(raw)
-
 
 if __name__ == "__main__":
     main()
