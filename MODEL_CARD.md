@@ -7,5 +7,5 @@
 - **Out of scope:** Automated claim denial, underwriting decisions, legal advice, use on real PII without governance.
 - **Limitations:** Trained on synthetic templates; real-world notes are messier. Policy clauses are simplified and do not reflect any specific insurer's wording.
 - **Ethical considerations:** Fraud indicators may correlate with protected attributes; audit for disparate impact before deployment. Human review is mandatory.
-- **Evaluation:** See README §7 and `src/evaluate.py`.
+- **Evaluation:** See README section 7 and `src/evaluate.py`.
 
