@@ -14,7 +14,7 @@ Insurance carriers receive millions of First Notice of Loss (FNOL) reports every
 General-purpose LLMs are fluent but hallucinate policy terms, don't output reliable structured data, and are not calibrated for insurance terminology.
 
 ## 2. The Solution
-ClaimSense-LLM fine-tunes an open-weight base model (default: `mistralai/Mistral-7B-Instruct-v0.3`, swappable for Llama 3 / Qwen 2.5) using **QLoRA** on a synthetic, privacy-safe insurance corpus to perform three tasks:
+ClaimSense-LLM fine-tunes an open-weight base model (default: `meta-llama/Llama-3.1-8B-Instruct`, swappable for Mistral / Qwen 2.5) using **QLoRA** on a synthetic, privacy-safe insurance corpus to perform three tasks:
 
 | Task | Input | Output |
 |------|-------|--------|
