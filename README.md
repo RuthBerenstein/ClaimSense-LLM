@@ -66,7 +66,7 @@ pip install -r requirements.txt
 
 # 1) Generate synthetic training + test examples (no real customer data)
 python src/generate_data.py --n 1000 --out data/train.jsonl --seed 42
-python src/generate_data.py --n 100  --out data/test.jsonl  --seed 7
+python src/generate_data.py --n 100  --out data/test.jsonl  --seed 123
 
 # 2) Fine-tune (free Colab T4 works: 1,000 examples, 1 epoch, ~1.5 h)
 python src/train.py --config configs/train_config.yaml
