@@ -14,10 +14,12 @@ from prompts import build_prompt  # noqa: E402
 
 BASE = "meta-llama/Llama-3.1-8B-Instruct"
 
-def load(adapter: str, base: str = BASE):
-    tok = AutoTokenizer.from_pretrained(adapter)
+def load(adapter: str, base: str = BASE, base_only: bool = False):
+    tok = AutoTokenizer.from_pretrained(base if base_only else adapter)
     bnb = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.bfloat16)
     model = AutoModelForCausalLM.from_pretrained(base, quantization_config=bnb, device_map="auto")
+    if base_only:
+        return model.eval(), tok
     return PeftModel.from_pretrained(model, adapter).eval(), tok
 
 @torch.no_grad()
