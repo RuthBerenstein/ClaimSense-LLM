@@ -23,11 +23,14 @@ def field_f1(pred: dict, gold: dict) -> float:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--adapter", required=True)
+    ap.add_argument("--adapter", default=None)
+    ap.add_argument("--base-only", action="store_true")
     ap.add_argument("--data", default="data/test.jsonl")
     ap.add_argument("--limit", type=int, default=300)
     a = ap.parse_args()
-    model, tok = load(a.adapter)
+    assert a.adapter or a.base_only, 'pass --adapter or --base-only'
+    model, tok = load(a.adapter, base_only=a.base_only)
+    
     stats = defaultdict(lambda: {"n": 0, "valid": 0, "score": 0.0})
     for i, line in enumerate(open(a.data)):
         if i >= a.limit:
