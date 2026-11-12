@@ -2,8 +2,8 @@ base_model: meta-llama/Llama-3.1-8B-Instruct
 train_file: data/train.jsonl
 eval_file: data/test.jsonl
 output_dir: outputs/claimsense-lora
-max_len: 768
-epochs: 3
+max_len: 512
+epochs: 1
 batch_size: 2
 grad_accum: 8
 lr: 2.0e-4
