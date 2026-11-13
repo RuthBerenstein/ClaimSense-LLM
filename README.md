@@ -31,7 +31,7 @@ ClaimSense-LLM fine-tunes an open-weight base model (default: `meta-llama/Llama-
             Evaluation (JSON validity, field F1, accuracy) ◄───────┤
                                                                    ▼
                                                Inference CLI / Gradio demo
-```
+``` 
 
 ## 4. Repository Structure
 ```
